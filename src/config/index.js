@@ -7,7 +7,7 @@ if(!envFound){
 }
 
 module.exports = {
-    port: parseInt(process.env.PORT, 10),
+    port: parseInt(process.env.PORT, 10) || 3000,
 
     db: {
         name: process.env.DB_NAME,

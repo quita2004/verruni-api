@@ -1,0 +1,84 @@
+<section class="top-container" id="wapper_top">
+    <nav class="menu_content ws-container clearfix" style="background-image:url(''); ">
+        <div class="menuItem menu-item cssmenu" id="cssmenu">
+            <div id="menu-button">Menu</div>
+            <ul>
+                <li class="active">
+                    <a href="/" title="Trang chủ">Trang chủ</a>
+                </li>
+                <li>
+                    <a href="/gioi-thieu/" title="Giới thiệu">Giới thiệu</a>
+                </li>
+                <li>
+                    <a href="/dich-vu/" title="Dịch vụ">Dịch vụ</a>
+                </li>
+                <li>
+                    <a href="/thong-tin-tu-van/" title="THÔNG TIN TƯ VẤN">THÔNG TIN TƯ VẤN</a>
+                </li>
+                <li>
+                    <a href="/ho-tro-ky-thuat/" title="Hỗ trợ kỹ thuật">Hỗ trợ kỹ thuật</a>
+                </li>
+                <li>
+                    <a href="/san-pham/" title="Sản phẩm">Sản phẩm</a>
+                </li>
+                <li>
+                    <a href="/tuyen-dung/" title="Tuyển Dụng">Tuyển Dụng</a>
+                </li>
+                <li>
+                    <a href="/lien-he/" title="Liên hệ">Liên hệ</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.menuItem menu-item cssmenu -->
+    </nav>
+</section>
+<!-- /.top-container -->
+<section class="header">
+    <div id="wrap_noidung"></div>
+    <!-- /#wrap_noidung -->
+    <div class="banner-container" style="background-image: url('/uploads/logo/background-banner-tieng-viet.png'); background-position: right center; background-size: cover; background-repeat: no-repeat;">
+        <div class="ws-container clearfix">
+            <div class="banner clearfix">
+
+
+                <div class="banner-item">
+                    <a href="/" title="dienlanh">
+                        <img src="/uploads/logo/dienlanh-tieng-viet.png" class="img-responsive" title="dienlanh" alt="dienlanh" height="90">
+                    </a>
+                </div>
+                <!-- /.banner-item -->
+
+
+                <div class="banner-item">
+                    <a href="/" title="banner2">
+                        <img src="/uploads/logo/banner2-tieng-viet.png" class="img-responsive" title="banner2" alt="banner2">
+                    </a>
+                </div>
+                <!-- /.banner-item -->
+            </div>
+            <!-- /.banner -->
+        </div>
+    </div>
+    <!-- /.menu-banner-container -->
+</section>
+<!-- /.header -->
+<header id="wapper_menu" class="clearfix">
+    <nav class="menu_content ws-container clearfix" style="background-image:url(''); ">
+        <div class="menuItem menu-item cssmenu" id="cssmenu">
+            <ul>
+                <% menus.forEach(menu => { %>
+                    <li>
+                        <a href="<%= menu.url %>" title="<%= menu.text %>">
+                            <%= menu.text %>
+                        </a>
+                    </li>
+                    <% }); %>
+            </ul>
+        </div>
+        <!-- /.menuItem menu-item cssmenu -->
+        <div class="wapper-menu-mobile clearfix">
+            <div class="phone-mobile"><i class="fa fa-phone" aria-hidden="true"></i><span>Hotline : </span><a href="tel::HOTLINE" title="hotline" rel="no-follow">0989.966.617</a></div>
+        </div>
+        <!-- /#btn-right -->
+    </nav>
+</header>

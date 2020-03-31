@@ -1,37 +1,12 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
-const sequelize = new Sequelize('verruni-nodejs', 'root', '', {
-    host: 'localhost',
-    dialect: 'mysql'
-});
-
-var User = sequelize.define('users',
-    {
-        id: {
-            primaryKey: true,
-            type: DataTypes.STRING,
-        },
-        username: DataTypes.STRING,
-        email: DataTypes.STRING,
-        password: DataTypes.STRING,
-        phoneNumber: DataTypes.STRING,
-        fullName: DataTypes.STRING,
-        address: DataTypes.STRING,
-    },
-    {
-        sequelize,
-        freezeTableName: true,
-        timestamps: false,
-        underscored: true,
+var knex = require('knex')({
+    client: 'mysql',
+    connection: {
+        host: '127.0.0.1',
+        user: 'root',
+        password: '',
+        database: 'vtb-new'
     }
-);
-
-User.create({
-    id: 'janedoe2',
-    username: 'janedoe',
-    email: 'janedoe',
-    password: 'janedoe',
-    phoneNumber: '1323123'
+});
+let s = knex.select().table('information').then(x => {
+    console.log(x[0].id);
 })
-    .then(jane => {
-        console.log(jane.toJSON());
-    });

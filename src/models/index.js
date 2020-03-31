@@ -1,5 +1,4 @@
-const Users = require('./users');
-
 module.exports = {
-    Users
+    Information: require('./information'),
+    Menu: require('./menu')
 }

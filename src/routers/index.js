@@ -7,11 +7,10 @@ router.get("/ting", (req, res) => {
     res.send("tong");
 });
 
-let usersRouter = Router();
-usersRouter.get('/', controllers.Users.getAll);
-usersRouter.get('/:id', controllers.Users.get);
+let inforRouter = Router();
+inforRouter.get('/', controllers.Information.get);
 
-router.use('/users', usersRouter);
+router.use('/information', inforRouter);
 
 
 module.exports = router;
