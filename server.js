@@ -20,7 +20,9 @@ async function startServer() {
     app.get('/admin', function(req, res) {
         res.render('admin/pages/index', { what: 'best', who: 'me' });
     });
-
+    app.get('/admin/slider', function(req, res) {
+        res.render('admin/pages/slider', { what: 'best', who: 'me' });
+    });
 
     app.listen(config.port, err => {
         if (err) {
