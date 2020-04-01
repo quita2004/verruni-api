@@ -1,4 +1,4 @@
-module.exports = (res, { data, message = '', success = false, code = 'NOT_FOUND' }) => {
+module.exports = (res, { data = null, message = '', success = false, code = 'NOT_FOUND' }) => {
     res.status(404).send({
         data,
         code,

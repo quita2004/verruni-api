@@ -15,6 +15,8 @@ module.exports = {
         password: process.env.DB_PASSWORD,
         host: process.env.DB_HOST,
         dialect:  process.env.DB_DIALECT
-    }
+    },
+
+    pathImageUpload: process.env.PWD + '/public/uploads/images/'
     
 }

@@ -4,6 +4,7 @@ const config = require("./src/config");
 const router = require("./src/routers");
 
 const controllers = require('./controllers');
+const adminRouter = require('./router/admin');
 
 async function startServer() {
     const app = express();
@@ -17,12 +18,8 @@ async function startServer() {
 
     app.engine('ejs', engine);
     app.get('/', controllers.index);
-    app.get('/admin', function(req, res) {
-        res.render('admin/pages/index', { what: 'best', who: 'me' });
-    });
-    app.get('/admin/slider', function(req, res) {
-        res.render('admin/pages/slider', { what: 'best', who: 'me' });
-    });
+    app.use('/admin', adminRouter);
+
 
     app.listen(config.port, err => {
         if (err) {

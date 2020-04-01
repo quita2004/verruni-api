@@ -12,5 +12,10 @@ inforRouter.get('/', controllers.Information.get);
 
 router.use('/information', inforRouter);
 
+let sliderRouter = Router();
+sliderRouter.get('/:id', controllers.Slider.get);
+sliderRouter.post('/', controllers.Slider.create);
+
+router.use('/slider', sliderRouter);
 
 module.exports = router;

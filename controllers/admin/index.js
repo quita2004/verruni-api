@@ -1,3 +1,4 @@
 module.exports= {
-    Slider: require('./slider')
+    Slider: require('./slider'),
+    Home: require('./home')
 }
