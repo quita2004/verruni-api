@@ -1,9 +1,7 @@
-let baseUrl;
+const btnCreate = $('.btn-create-entity');
+const btnUpdate = $('.btn-update-entity');
 
 $(() => {
-  baseUrl = $('#base-url').val();
-
-
   $("input[data-image]").on('change', function () {
     const name = $(this).data('image');
 
@@ -23,15 +21,35 @@ $(() => {
 
   $('.button-show-create').on('click', function () {
     clearForm('.form-modal-create');
+    btnCreate.show();
+    btnUpdate.hide();
   });
 
   $('.q-button-edit').on('click', function () {
     clearForm('.form-modal-create');
+    btnCreate.hide();
+    btnUpdate.show();
 
     const id = $(this).data('id');
-    loadDataUpdate(id);
-    updateEntity(id);
+    const url = $(this).data('url');
+    loadDataUpdate(id, url);
   });
+
+  $('.btn-update-entity').on('click', function () {
+    const formName = $(this).data('form');
+    const url = $(this).data('url');
+    updateEntity(formName, url);
+  });
+
+  $('.q-button-delete').on('click', function () {
+    if (window.confirm("Bạn có chắc chắn muốn xóa?")) {
+      const id = $(this).data('id');
+      const url = $(this).data('url');
+      deleteEntity(id, url);
+    }
+  });
+
+  $('.summernote').summernote();
 });
 
 function previewImage(input, target) {
@@ -47,7 +65,7 @@ function previewImage(input, target) {
 }
 
 function showDataUpdate(data, form) {
-  const inputs = $(form).find("input[data-name]");
+  const inputs = $(form).find("[data-name]");
   inputs.each(function () {
     const name = $(this).data('name');
     if (name) {
@@ -57,37 +75,91 @@ function showDataUpdate(data, form) {
       }
 
       if (type === "file") {
-        $(`input[data-image-show=${name}]`).attr('src','/uploads/images/'+  data[name]);
+        $(`input[data-image-show=${name}]`).attr('src', '/uploads/images/' + data[name]);
+      }
+
+      if (type === "summernote") {
+        $(this).summernote('code', data[name]);
       }
     }
   });
 }
 
-function loadDataUpdate(id) {
+function getFormData(form) {
+  const formData = new FormData();
+  const inputs = $(form).find("[data-name]");
+  inputs.each(function () {
+    const name = $(this).data('name');
+    if (name) {
+      const type = $(this).data('type');
+      if (type === "text") {
+        const data = $(this).val();
+        console.log("getFormData -> data", data)
+        if (data) {
+          formData.append(name, data);
+        }
+      }
+
+      if (type === "file") {
+        const data = $(this).get(0).files[0];
+        if (data) {
+          formData.append(name, data);
+        }
+      }
+
+      if (type === "summernote") {
+        const data = $(this).summernote('code');
+        if (data) {
+          formData.append(name, data);
+        }
+      }
+    }
+  });
+
+  return formData;
+}
+
+function loadDataUpdate(id, url) {
   function onSuccess(res) {
     const data = res.data;
-    showDataUpdate(data, '.form-modal-create');
+    if (data) {
+      showDataUpdate(data, '.form-modal-create');
+    } else {
+      toastr.error('Không tìm thấy dữ liệu');
+    }
   }
   $.ajax({
-    url: baseUrl + id,
+    url: url + '/' + id,
     type: 'GET',
     success: onSuccess
   });
 }
 
-function updateEntity(form, id) {
-  
+function onSucces(res) {
+  toastr.success(res.message);
+  setTimeout(function () {
+    location.reload();
+  }, 500);
+};
+function onError(res) {
+  toastr.error("Đã xảy ra lỗi");
+};
+
+function updateEntity(form, url) {
+  const formData = getFormData(form);
+  $.ajax({
+    url: url + '/update',
+    method: 'POST',
+    type: 'POST',
+    processData: false,
+    contentType: false,
+    data: formData,
+    success: onSucces,
+    error: onError
+  });
 }
 
 function createEntity(form, url) {
-  function onSucces(res) {
-    toastr.success(res.message);
-    location.reload();
-  };
-  function onError(res) {
-    toastr.error(res.message);
-  };
-
   const formData = getFormData(form);
   $.ajax({
     url: url,
@@ -101,28 +173,6 @@ function createEntity(form, url) {
   });
 }
 
-function getFormData(form) {
-  const formData = new FormData();
-  const inputs = $(form).find("input[data-name]");
-  inputs.each(function () {
-    const name = $(this).data('name');
-    if (name) {
-      const type = $(this).data('type');
-      if (type === "text") {
-        const data = $(this).val();
-        formData.append(name, data);
-      }
-
-      if (type === "file") {
-        const data = $(this).get(0).files[0];
-        formData.append(name, data);
-      }
-    }
-  });
-
-  return formData;
-}
-
 function clearForm(form) {
   const inputs = $(form).find("input");
   inputs.each(function () {
@@ -132,5 +182,18 @@ function clearForm(form) {
       $(this).val('');
 
     }
+  });
+}
+
+function deleteEntity(id, url) {
+  $.ajax({
+    url: url + '/delete/' + id,
+    method: 'POST',
+    type: 'POST',
+    processData: false,
+    contentType: false,
+    data: null,
+    success: onSucces,
+    error: onError
   });
 }

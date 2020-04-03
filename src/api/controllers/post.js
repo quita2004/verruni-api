@@ -6,11 +6,12 @@ const messages = require('../messages');
 const { getFiles, saveFile, getExtensionName } = require('../../../common/files')
 const configs = require('../../config');
 const enums = require('../../enums');
+const common = require('../../../common');
 
 module.exports = {
     get: async (req, res) => {
         const id = req.params.id;
-        const data = await models.Slider.get({id});
+        const data = await models.Post.get({ id });
         if (data.length > 0) {
             messages.SuccessMessage(res, { data: data[0] });
             return;
@@ -30,10 +31,13 @@ module.exports = {
         const entity = {
             title: data.fields.title,
             image: filename,
-            category: enums.Slider.Home
+            category: data.fields.category,
+            description: data.fields.description,
+            content: data.fields.content,
+            url: common.getUrl(data.fields.title)
         };
 
-        await models.Slider.create(entity);
+        await models.Post.create(entity);
 
         messages.CreatedMessage(res, {
             message: 'Tạo thành công'
@@ -45,7 +49,10 @@ module.exports = {
         const entity = {
             id: parseInt(data.fields.id),
             title: data.fields.title || '',
-            category: enums.Slider.Home
+            category: parseInt(data.fields.category),
+            content: data.fields.content,
+            description: data.fields.description,
+            url: common.getUrl(data.fields.title)
         };
 
         let filename = '';
@@ -55,7 +62,7 @@ module.exports = {
             entity.image = filename;
         }
 
-        await models.Slider.update(entity);
+        await models.Post.update(entity);
 
         messages.CreatedMessage(res, {
             message: 'Cập nhật thành công'
@@ -64,7 +71,7 @@ module.exports = {
     delete: async (req, res) => {
         const id = req.params.id;
         if (id) {
-            await models.Slider.delete(id);
+            await models.Post.delete(id);
         }
 
         messages.DeletedMessage(res, {

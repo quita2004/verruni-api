@@ -1,7 +1,7 @@
 <% layout('../partials/boilerplate') -%>
 <main>
     <div class="container-fluid">
-        <h1 class="mt-4">Slider trang chủ</h1>
+        <h1 class="mt-4"><% title %></h1>
         <div class="card mb-4">
             <div class="card-header">
                 <button class="btn float-right btn-primary button-show-create" data-toggle="modal"
@@ -14,24 +14,25 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>Tiêu đề</th>
+                                <th>Thể loại</th>
                                 <th>Ảnh</th>
-                                <th>Mô tả</th>
                                 <th class="toolkit">#</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% sliders.forEach(slider => { %>
+                            <% posts.forEach(item => { %>
                             <tr>
-
-                                <td><img class="q-show-img" src="/uploads/images/<%= slider.image %>"
-                                        alt="<%= slider.title %>"></td>
-                                <td><%= slider.title %></td>
+                                <td><%= item.title %></td>
+                                <td><%= item.category %></td>
+                                <td><img class="q-show-img" src="/uploads/images/<%= item.image %>"
+                                        alt="<%= item.title %>"></td>
                                 <td class="toolkit">
-                                    <button class="btn q-button-edit" title="Sửa" data-url="/api/slider"
-                                        data-id="<%= slider.id %>" data-toggle="modal" data-target="#createModal"><i
+                                    <button class="btn q-button-edit" title="Sửa" data-url="/api/post"
+                                        data-id="<%= item.id %>" data-toggle="modal" data-target="#createModal"><i
                                             class="fas fa-edit"></i></button>
                                     <button class="btn btn-delete q-button-delete" title="Xóa"
-                                        data-id="<%= slider.id %>" data-url="/api/slider"><i
+                                        data-id="<%= item.id %>" data-url="/api/post"><i
                                             class="fas fa-trash text-danger"></i></button>
                                 </td>
                             </tr>
@@ -62,6 +63,19 @@
                         <div class="container">
                             <div class="row">
                                 <div class="form-group col-sm-6">
+                                    <label for="title">Tiêu đề:</label>
+                                    <input type="text" class="form-control" id="title" data-name="title"
+                                        data-type="text" />
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="category">Thể loại:</label>
+                                    <select class="form-control" data-name="category" data-type="text">
+                                        <option value="1">Dịch vụ</option>
+                                        <option value="2">Tư vấn</option>
+                                        <option value="3">Hỗ trợ</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-sm-6">
                                     <label for="image">Hình ảnh:</label>
                                     <div class="show-image">
                                         <input type="image" src="/images/noimage.png" alt="preview" class="img"
@@ -70,10 +84,15 @@
                                     <input type="file" hidden accept="image/x-png,image/gif,image/jpeg" id="image"
                                         data-image="image" data-name="image" data-type="file" />
                                 </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="title">Tiêu đề:</label>
-                                    <input type="text" class="form-control" placeholder="Tiêu đề" id="title"
-                                        data-name="title" data-type="text" />
+                                <div class="form-group col-sm-12">
+                                    <label for="description">Mô tả:</label>
+                                    <textarea name="description" id="description" rows="3" class="form-control"
+                                        data-name="description" data-type="text"></textarea>
+                                </div>
+                                <div class="form-group col-sm-12">
+                                    <label for="title">Nội dung:</label>
+                                    <input type="text" class="form-control summernote" placeholder="Tiêu đề"
+                                        id="content" data-name="content" data-type="summernote" />
                                 </div>
                             </div>
                         </div>
@@ -83,9 +102,9 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-success btn-create-entity"
-                        data-form=".form-modal-create" data-url="/api/slider">Tạo</button>
+                        data-form=".form-modal-create" data-url="/api/post">Tạo</button>
                     <button type="button" data-dismiss="modal" class="btn btn-success btn-update-entity"
-                        data-form=".form-modal-create" data-url="/api/slider">Cập nhật</button>
+                        data-form=".form-modal-create" data-url="/api/post">Cập nhật</button>
 
                     <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
                 </div>

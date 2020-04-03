@@ -1,15 +1,17 @@
 const db = require('../loaders/db');
-const tableName = 'slider';
+const tableName = 'post';
 
 module.exports = {
-    get: async ({id, category}) => {
+    get: async ({id, category, url}) => {
         let select = db.select();
         if (id) {
             select = select.where('id', id);
         }
         if (category) {
             select = select.where('category', category);
-
+        }
+        if (url) {
+            select = select.where('url', url);
         }
         select = select.table(tableName);
 
@@ -20,8 +22,13 @@ module.exports = {
     },
     update: async (data) => {
         const entity = {
-            title: data.title
+            category: data.category,
+            description: data.description,
+            content: data.content,
+            title: data.title,
+            url: data.url
         };
+
         if (data.image) {
             entity.image = data.image;
         }

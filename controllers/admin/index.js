@@ -1,4 +1,5 @@
 module.exports= {
     Slider: require('./slider'),
-    Home: require('./home')
+    Home: require('./home'),
+    Post: require('./post')
 }
