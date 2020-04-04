@@ -1,5 +1,6 @@
 const btnCreate = $('.btn-create-entity');
 const btnUpdate = $('.btn-update-entity');
+// var dataTable = $('#dataTable').DataTable();
 
 $(() => {
   $("input[data-image]").on('change', function () {
@@ -25,7 +26,7 @@ $(() => {
     btnUpdate.hide();
   });
 
-  $('.q-button-edit').on('click', function () {
+  $('body').on('click', '.q-button-edit', function () {
     clearForm('.form-modal-create');
     btnCreate.hide();
     btnUpdate.show();
@@ -35,13 +36,13 @@ $(() => {
     loadDataUpdate(id, url);
   });
 
-  $('.btn-update-entity').on('click', function () {
+  $('body').on('click','.btn-update-entity', function () {
     const formName = $(this).data('form');
     const url = $(this).data('url');
     updateEntity(formName, url);
   });
 
-  $('.q-button-delete').on('click', function () {
+  $('body').on('click', '.q-button-delete', function () {
     if (window.confirm("Bạn có chắc chắn muốn xóa?")) {
       const id = $(this).data('id');
       const url = $(this).data('url');
@@ -49,7 +50,9 @@ $(() => {
     }
   });
 
-  $('.summernote').summernote();
+  $('.summernote').summernote({
+    minHeight: 300
+  });
 });
 
 function previewImage(input, target) {
@@ -75,7 +78,7 @@ function showDataUpdate(data, form) {
       }
 
       if (type === "file") {
-        $(`input[data-image-show=${name}]`).attr('src', '/uploads/images/' + data[name]);
+        $(`input[data-image-show=${name}]`).attr('src', data[name]);
       }
 
       if (type === "summernote") {
@@ -94,7 +97,6 @@ function getFormData(form) {
       const type = $(this).data('type');
       if (type === "text") {
         const data = $(this).val();
-        console.log("getFormData -> data", data)
         if (data) {
           formData.append(name, data);
         }
@@ -174,14 +176,18 @@ function createEntity(form, url) {
 }
 
 function clearForm(form) {
-  const inputs = $(form).find("input");
+  const inputs = $(form).find("[data-name]");
+  $('input[type=image]').attr('src', '/images/noimage.png');
   inputs.each(function () {
-    if ($(this).attr('type') === 'image') {
-      $(this).attr('src', '/images/noimage.png');
+    if ($(this).data('type') === 'summernote') {
+      $(this).summernote('code', '')
     } else {
       $(this).val('');
-
     }
+  });
+
+  $('select[data-name]').each(function () {
+    $(this).get(0).selectedIndex = '0';
   });
 }
 

@@ -1,0 +1,31 @@
+<% layout('../partials/boilerplate') -%>
+<% script('/admin/js/info.js') -%>
+
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Slider trang chủ</h1>
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered"  width="100%" cellspacing="0">
+                        <tbody>
+                            <% for (i in info) { 
+                                if(i !== 'id'){
+                            %>
+                            <tr>
+                                <td><%= i %></td>
+                                <td><input type="text" class="form-control" id="<%= i %>" value="<%= info[i] %>" /></td>
+                                <td class="toolkit">
+                                    <button class="btn q-button-edit-info" title="Lưu"
+                                        data-name="<%= i %>"><i class="fas fa-check"></i></button>
+                                </td>
+                            </tr>
+                            <%} } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

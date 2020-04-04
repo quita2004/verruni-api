@@ -4,6 +4,8 @@ const router = Router();
 
 router.get('/slider', adminController.Slider.get);
 router.get('/post', adminController.Post.get);
+router.get('/info', adminController.Info.get);
+
 
 router.get('/', adminController.Home.get);
 

@@ -1,0 +1,47 @@
+<% layout('../partials/boilerplate') -%>
+
+<section id="main" class="main clearfix">
+    <div class="ws-container">
+        <div class="main-wrap">
+            <div class="content-main">
+                <ol itemscope="" itemtype="http://schema.org/BreadcrumbList" id="breadcrumbs">
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemscope="" itemtype="http://schema.org/Thing" itemprop="item" href="/"
+                            title="<%= info.website %>">
+                            <span itemprop="name"></span>
+                        </a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <% if (post.cate){ %>
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemscope="" itemtype="http://schema.org/Thing" itemprop="item"
+                            href="<%= post.cate.url %>" title="<%= post.cate.category_name %>">
+                            <span itemprop="name"><%=  post.cate.category_name %></span>
+                        </a>
+                        <meta itemprop="position" content="2">
+                    </li>
+                    <% } %>
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemscope="" itemtype="http://schema.org/Thing" itemprop="item"
+                            href="#" title="<%= post.title %>">
+                            <span itemprop="name"><%= post.title %></span>
+                        </a>
+                        <meta itemprop="position" content="3">
+                    </li>
+                </ol>
+                <h1 class="product-title-big"><%= post.title %></h1>
+                <% if (post.description){ %>
+                <div style="font-weight: 500;"><%= post.description %></div>
+                <% } %>
+                <div class="noidungchitiet">
+                    <%- post.content %>
+                </div>
+            </div>
+            <!-- /.content-main -->
+            <%- partial('../partials/sidebar') %>
+            <!-- /.cotb -->
+        </div>
+        <!-- /.main-wrap -->
+    </div>
+    <!-- /.ws-container -->
+</section>

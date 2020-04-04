@@ -9,6 +9,7 @@ router.get("/ting", (req, res) => {
 
 let inforRouter = Router();
 inforRouter.get('/', controllers.Information.get);
+inforRouter.post('/update', controllers.Information.update);
 
 router.use('/information', inforRouter);
 

@@ -12,8 +12,10 @@ module.exports = {
     get: async (req, res) => {
         const id = req.params.id;
         const data = await models.Post.get({ id });
-        if (data.length > 0) {
-            messages.SuccessMessage(res, { data: data[0] });
+        const dataRes = data[0];
+        if (dataRes) {
+            dataRes.image = common.getFileUrl(dataRes.image);
+            messages.SuccessMessage(res, { data: dataRes });
             return;
         }
 

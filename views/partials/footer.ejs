@@ -11,11 +11,11 @@
     <div class="clearfix menu-bottom">
         <ul>
             <li><a href="/" title="HomePage"><i class="fa fa-home"></i> </a></li>
-            <li><a href="sms:0989.966.617" target="_blank" title="Click to SMS"><i class="fa fa-comments"></i> </a>
+            <li><a href="sms:<%= info.phone_1 %>" target="_blank" title="Click to SMS"><i class="fa fa-comments"></i> </a>
             </li>
-            <li><a href="tel:0989.966.617" title="clickToCall"><i class="fa fa-phone"></i></a></li>
+            <li><a href="tel:<%= info.phone_1 %>" title="clickToCall"><i class="fa fa-phone"></i></a></li>
             <li>
-                <a href="http://zalo.me/0989966617" target="_blank" title="Chat Zalo"><img src="/templates/images/ic_zalo.png" class="img-responsive" alt="zalo"></a>
+                <a href="<%= info.zalo %>" target="_blank" title="Chat Zalo"><img src="/templates/images/ic_zalo.png" class="img-responsive" alt="zalo"></a>
             </li>
             <li>
                 <a class="item categories-bot" href="javscript:;">
@@ -28,7 +28,7 @@
             </li>
         </ul>
     </div>
-    <a href="tel:0989.966.617" class="suntory-alo-phone suntory-alo-green" id="suntory-alo-phoneIcon" style="left: 0px; bottom: 30px;">
+    <a href="tel:<%= info.phone_1 %>" class="suntory-alo-phone suntory-alo-green" id="suntory-alo-phoneIcon" style="left: 0px; bottom: 30px;">
         <div class="suntory-alo-ph-circle"></div>
         <div class="suntory-alo-ph-circle-fill"></div>
         <div class="suntory-alo-ph-img-circle"><img src="/templates/images/phone_alo.png" class="img-responsive" alt="phone"></div>

@@ -4,15 +4,18 @@ const { v4: uuidv4 } = require('uuid');
 const models = require('../../models');
 const messages = require('../messages');
 const { getFiles, saveFile, getExtensionName } = require('../../../common/files')
+const common = require('../../../common');
 const configs = require('../../config');
 const enums = require('../../enums');
 
 module.exports = {
     get: async (req, res) => {
         const id = req.params.id;
-        const data = await models.Slider.get({id});
-        if (data.length > 0) {
-            messages.SuccessMessage(res, { data: data[0] });
+        const data = await models.Slider.get({ id });
+        const dataRes = data[0];
+        if (dataRes) {
+            dataRes.image = common.getFileUrl(dataRes.image);
+            messages.SuccessMessage(res, { data: dataRes });
             return;
         }
 

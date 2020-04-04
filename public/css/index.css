@@ -1,3 +1,91 @@
+#breadcrumbs {
+    border-radius: 3px;
+    padding: 7px 0px;
+    -webkit-box-shadow: 0px 1px 1px #CCC;
+    box-shadow: 0px 1px 1px #CCC;
+    margin-bottom: 15px;
+}
+
+#breadcrumbs>li {
+    display: inline-block;
+    padding: 0 4px;
+    cursor: pointer;
+}
+#breadcrumbs li:first-child {
+    padding-left: 8px;
+    margin-left: 0;
+}
+
+#breadcrumbs li:last-child, #breadcrumbs li a {
+    position: relative;
+}
+
+#breadcrumbs li:first-child a {
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+#breadcrumbs li a {
+    font-size: 15px;
+    transition: all ease .3s;
+    -webkit-transition: all ease .3s;
+}
+#breadcrumbs li:last-child, #breadcrumbs li a {
+    position: relative;
+}
+
+#breadcrumbs li:first-child a:before {
+    content: "\f015";
+    font-family: FontAwesome;
+    font-size: 20px;
+}
+
+#breadcrumbs>li:before {
+    content: "\f105";
+    font-family: FontAwesome;
+    padding-right: 8px;
+    font-size: 16px;
+}
+#breadcrumbs>li:first-child:before {
+    content: "";
+}
+ 
+.content-list .image {
+    width: 100%;
+    overflow: hidden;
+    height: 150px;
+}
+
+.itemservice .image img {
+    max-width: 100%;
+    display: block;
+    width: 100%;
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease;
+    height: 100%;
+}
+
+.content-list .noidungbox #main-contentt {
+    padding: 0;
+}
+
+.itemservice .name {
+    color: #000;
+    font-size: 15px;
+    height: 40px;
+    display: block;
+    overflow: hidden;
+    text-align: left;
+    margin: 10px 0 0;
+}
+
+.itemservice .name a {
+    color: inherit;
+    font-size: inherit;
+    padding: 10px 0px;
+    line-height: 1.5;
+}
+
  .clearfix:before,
  .clearfix:after {
      display: table;
@@ -7813,12 +7901,7 @@
      margin-bottom: 15px;
  }
  
- .content-list .noidungbox {
-     display: flex;
-     box-shadow: none;
-     border-radius: 0;
- }
- 
+
  .content-list .itemnoidung .name {
      margin: 0 0 10px;
      height: auto;
