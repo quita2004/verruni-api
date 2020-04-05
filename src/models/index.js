@@ -3,5 +3,6 @@ module.exports = {
     Menu: require('./menu'),
     Slider: require('./slider'),
     Post: require('./post'),
-    PostCategory: require('./post_category')
+    PostCategory: require('./post_category'),
+    User: require('./user')
 }

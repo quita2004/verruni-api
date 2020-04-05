@@ -47,6 +47,7 @@ module.exports = {
         const post = await models.Post.get({ url: '/' + url });
         if (post.length === 0) {
             res.sendStatus(404);
+            return;
         }
 
         if (post[0].category < 4) {
