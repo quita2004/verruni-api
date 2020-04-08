@@ -1,6 +1,6 @@
 const db = require('../loaders/db');
 
-const tableName = 'post_category';
+const tableName = 'slider_category';
 module.exports = {
     get: async () => {
         return db.select()

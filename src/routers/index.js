@@ -29,4 +29,12 @@ postRouter.post('/delete/:id', controllers.Post.delete);
 
 router.use('/post', postRouter);
 
+let productRouter = Router();
+productRouter.get('/:id', controllers.Product.get);
+productRouter.post('/', controllers.Product.create);
+productRouter.post('/update', controllers.Product.update);
+productRouter.post('/delete/:id', controllers.Product.delete);
+
+router.use('/product', productRouter);
+
 module.exports = router;

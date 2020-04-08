@@ -1,5 +1,4 @@
 <% layout('../partials/boilerplate') -%>
-<% script('/admin/js/post.js') -%>
 <main>
     <div class="container-fluid">
         <h1 class="mt-4"><%= title %></h1>
@@ -15,24 +14,22 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th style="width: 500px;">Tiêu đề</th>
-                                <th>Thể loại</th>
+                                <th style="width: 500px;">Tên</th>
                                 <th>Ảnh</th>
                                 <th class="toolkit">#</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% posts.forEach(item => { %>
+                            <% product.forEach(item => { %>
                             <tr>
-                                <td><%= item.title %></td>
-                                <td><%= item.category_name %></td>
-                                <td><img class="q-show-img" src="<%= item.image %>" alt="<%= item.title %>"></td>
+                                <td><%= item.name %></td>
+                                <td><img class="q-show-img" src="<%= item.image %>" alt="<%= item.name %>"></td>
                                 <td class="toolkit">
-                                    <button class="btn q-button-edit" title="Sửa" data-url="/api/post"
+                                    <button class="btn q-button-edit" title="Sửa" data-url="/api/product"
                                         data-id="<%= item.id %>" data-toggle="modal" data-target="#createModal"><i
                                             class="fas fa-edit"></i></button>
                                     <button class="btn btn-delete q-button-delete" title="Xóa" data-id="<%= item.id %>"
-                                        data-url="/api/post"><i class="fas fa-trash text-danger"></i></button>
+                                        data-url="/api/product"><i class="fas fa-trash text-danger"></i></button>
                                 </td>
                             </tr>
                             <% }); %>
@@ -61,17 +58,14 @@
                         <div class="container">
                             <div class="row">
                                 <div class="form-group col-sm-6">
-                                    <label for="title">Tiêu đề:</label>
-                                    <input type="text" class="form-control" id="title" data-name="title"
+                                    <label for="name">Tên:</label>
+                                    <input type="text" class="form-control" id="title" data-name="name"
                                         data-type="text" />
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <label for="category">Thể loại:</label>
-                                    <select class="form-control" id="category" data-name="category" data-type="text">
-                                        <% post_category.forEach(item => { %> 
-                                        <option value="<%= item.post_category_id %>"><%= item.category_name %></option>
-                                        <%}) %> 
-                                    </select>
+                                    <label for="price">Giá:</label>
+                                    <input type="number" class="form-control" id="price" data-name="price"
+                                        data-type="text" />
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="image">Hình ảnh:</label>
@@ -84,13 +78,8 @@
                                 </div>
                                 <div class="form-group col-sm-12">
                                     <label for="description">Mô tả:</label>
-                                    <textarea name="description" id="description" rows="3" class="form-control"
-                                        data-name="description" data-type="text"></textarea>
-                                </div>
-                                <div class="form-group col-sm-12">
-                                    <label for="content">Nội dung:</label>
                                     <input type="text" class="form-control summernote" placeholder="Tiêu đề"
-                                        id="content" data-name="content" data-type="summernote" />
+                                        id="description" data-name="description" data-type="summernote" />
                                 </div>
                             </div>
                         </div>
@@ -100,9 +89,9 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-success btn-create-entity"
-                        data-form=".form-modal-create" data-url="/api/post">Tạo</button>
+                        data-form=".form-modal-create" data-url="/api/product">Tạo</button>
                     <button type="button" data-dismiss="modal" class="btn btn-success btn-update-entity"
-                        data-form=".form-modal-create" data-url="/api/post">Cập nhật</button>
+                        data-form=".form-modal-create" data-url="/api/product">Cập nhật</button>
 
                     <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
                 </div>

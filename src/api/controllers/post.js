@@ -3,7 +3,6 @@ const { v4: uuidv4 } = require('uuid');
 
 const models = require('../../models');
 const messages = require('../messages');
-const { getFiles, saveFile, getExtensionName } = require('../../../common/files')
 const configs = require('../../config');
 const enums = require('../../enums');
 const common = require('../../../common');
@@ -22,12 +21,12 @@ module.exports = {
         messages.NotFoundMessage(res, {});
     },
     create: async (req, res) => {
-        const data = await getFiles(req);
+        const data = await common.getFiles(req);
         const file = data.files.image;
         let filename = '';
         if (file) {
-            filename = `${uuidv4()}.${getExtensionName(file.name)}`;
-            await saveFile(file, configs.pathImageUpload + filename);
+            filename = `${uuidv4()}.${common.getExtensionName(file.name)}`;
+            await common.saveFile(file, configs.pathImageUpload + filename);
         }
 
         const entity = {
@@ -46,7 +45,7 @@ module.exports = {
         });
     },
     update: async (req, res) => {
-        const data = await getFiles(req);
+        const data = await common.getFiles(req);
         const file = data.files.image;
         const entity = {
             id: parseInt(data.fields.id),
@@ -59,8 +58,8 @@ module.exports = {
 
         let filename = '';
         if (file) {
-            filename = `${uuidv4()}.${getExtensionName(file.name)}`;
-            await saveFile(file, configs.pathImageUpload + filename);
+            filename = `${uuidv4()}.${common.getExtensionName(file.name)}`;
+            await common.saveFile(file, configs.pathImageUpload + filename);
             entity.image = filename;
         }
 
@@ -73,7 +72,10 @@ module.exports = {
     delete: async (req, res) => {
         const id = req.params.id;
         if (id) {
-            await models.Post.delete(id);
+            const post = await models.Post.delete(id);
+            if (post.image) {
+                common.deleteFile(configs.pathImageUpload + post.image);
+            }
         }
 
         messages.DeletedMessage(res, {

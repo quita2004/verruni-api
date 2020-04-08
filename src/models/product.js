@@ -1,17 +1,17 @@
 const db = require('../loaders/db');
-const tableName = 'slider';
 
+const tableName = 'product';
 module.exports = {
-    get: async ({ id, category }) => {
-        let select = db(tableName).select();
+    get: async ({ id, url }) => {
+        let select = db.select();
         if (id) {
             select = select.where('id', id);
         }
-        if (category) {
-            select = select.where('category', category);
-
+        if (url) {
+            select = select.where('url', url);
         }
-        select = select.innerJoin('slider_category', 'slider.category', 'slider_category.slider_category_id');
+        select = select
+            .table(tableName);
 
         return select;
     },
@@ -20,9 +20,13 @@ module.exports = {
     },
     update: async (data) => {
         const entity = {
-            title: data.title,
-            category: data.category
+            category: data.category,
+            description: data.description,
+            name: data.name,
+            url: data.url,
+            price: data.price
         };
+
         if (data.image) {
             entity.image = data.image;
         }

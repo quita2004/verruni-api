@@ -23,8 +23,19 @@ function getExtensionName(filename) {
     return filename.split('.').pop();;
 }
 
+function deleteFile(path) {
+    if (path) {
+        try {
+            fs.unlink(path);
+        } catch (err) {
+            console.log("Error delete file ", path);
+        }
+    }
+}
+
 module.exports = {
     getFiles,
     saveFile,
-    getExtensionName
+    getExtensionName,
+    deleteFile
 }

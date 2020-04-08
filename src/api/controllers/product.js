@@ -3,14 +3,14 @@ const { v4: uuidv4 } = require('uuid');
 
 const models = require('../../models');
 const messages = require('../messages');
-const common = require('../../../common');
 const configs = require('../../config');
 const enums = require('../../enums');
+const common = require('../../../common');
 
 module.exports = {
     get: async (req, res) => {
         const id = req.params.id;
-        const data = await models.Slider.get({ id });
+        const data = await models.Product.get({ id });
         const dataRes = data[0];
         if (dataRes) {
             dataRes.image = common.getFileUrl(dataRes.image);
@@ -30,12 +30,14 @@ module.exports = {
         }
 
         const entity = {
-            title: data.fields.title,
+            name: data.fields.name,
             image: filename,
-            category: data.fields.category
+            description: data.fields.description,
+            price: data.fields.price,
+            url: common.getUrl(data.fields.name)
         };
 
-        await models.Slider.create(entity);
+        await models.Product.create(entity);
 
         messages.CreatedMessage(res, {
             message: 'Tạo thành công'
@@ -46,8 +48,10 @@ module.exports = {
         const file = data.files.image;
         const entity = {
             id: parseInt(data.fields.id),
-            title: data.fields.title || '',
-            category: data.fields.category
+            name: data.fields.name || '',
+            price: data.fields.price,
+            description: data.fields.description,
+            url: common.getUrl(data.fields.name)
         };
 
         let filename = '';
@@ -57,7 +61,7 @@ module.exports = {
             entity.image = filename;
         }
 
-        await models.Slider.update(entity);
+        await models.Product.update(entity);
 
         messages.CreatedMessage(res, {
             message: 'Cập nhật thành công'
@@ -66,9 +70,9 @@ module.exports = {
     delete: async (req, res) => {
         const id = req.params.id;
         if (id) {
-            const slider = await models.Slider.delete(id);
-            if (slider.image) {
-                common.deleteFile(configs.pathImageUpload + slider.image);
+            const data = await models.Product.delete(id);
+            if (data.image) {
+                common.deleteFile(configs.pathImageUpload + data.image);
             }
         }
 

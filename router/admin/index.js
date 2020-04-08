@@ -6,6 +6,7 @@ module.exports = function (passport) {
 
   router.get('/slider', middleware.isAuthenticated, adminController.Slider.get);
   router.get('/post', middleware.isAuthenticated, adminController.Post.get);
+  router.get('/product', middleware.isAuthenticated, adminController.Product.get);
   router.get('/info', middleware.isAuthenticated, adminController.Info.get);
   router.get('/', middleware.isAuthenticated, adminController.Info.get);
 
@@ -19,19 +20,6 @@ module.exports = function (passport) {
     failureRedirect: '/admin/login',
     failureFlash: true
   }));
-  // router.post('/login', function (req, res, next) {
-  //   passport.authenticate('login', function (err, user, info) {
-  //     if (err || !user) {
-  //       return res.status(400).send({ message: 'Tài khoản hoặc mật khẩu không đúng' });
-  //     }
-  //     req.session.save((err) => {
-  //       if (err) {
-  //         return next(err);
-  //       }
-  //       res.redirect('/admin');
-  //     });
-  //   })(req, res, next);
-  // });
 
   // router.post('/signup', passport.authenticate('signup', {
   //   successRedirect: '/home',

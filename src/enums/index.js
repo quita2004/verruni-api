@@ -3,7 +3,8 @@ module.exports = {
         Home: 1
     }),
     Slider: Object.freeze({
-        Home: 1
+        Home: 1,
+        ImageHeader: 2
     }),
     Post: Object.freeze({
         // database table --post_category

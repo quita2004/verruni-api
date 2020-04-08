@@ -16,6 +16,7 @@
                             <tr>
                                 <th>Ảnh</th>
                                 <th>Mô tả</th>
+                                <th>Thể loại</th>
                                 <th class="toolkit">#</th>
                             </tr>
                         </thead>
@@ -26,6 +27,7 @@
                                 <td><img class="q-show-img" src="/uploads/images/<%= slider.image %>"
                                         alt="<%= slider.title %>"></td>
                                 <td><%= slider.title %></td>
+                                <td><%= slider.slider_category_name %></td>
                                 <td class="toolkit">
                                     <button class="btn q-button-edit" title="Sửa" data-url="/api/slider"
                                         data-id="<%= slider.id %>" data-toggle="modal" data-target="#createModal"><i
@@ -69,6 +71,14 @@
                                     </div>
                                     <input type="file" hidden accept="image/x-png,image/gif,image/jpeg" id="image"
                                         data-image="image" data-name="image" data-type="file" />
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label for="category">Thể loại:</label>
+                                    <select class="form-control" id="category" data-name="category" data-type="text">
+                                        <% sliderCategory.forEach(item => { %> 
+                                        <option value="<%= item.slider_category_id %>"><%= item.slider_category_name %></option>
+                                        <%}) %> 
+                                    </select>
                                 </div>
                                 <div class="form-group col-sm-6">
                                     <label for="title">Tiêu đề:</label>

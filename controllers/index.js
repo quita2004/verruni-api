@@ -5,7 +5,7 @@ const common = require('../common');
 module.exports = {
     index: async (req, res) => {
         const commonData = await common.getCommonData();
-        const sliders = await models.Slider.get({});
+        const sliders = await models.Slider.get({category: enums.Slider.Home});
 
         const post = await models.Post.get({});
 
