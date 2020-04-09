@@ -2,6 +2,8 @@
     <nav class="menu_content ws-container clearfix" style="background-image:url(''); ">
         <div class="menuItem menu-item cssmenu" id="cssmenu">
             <div id="menu-button">Menu</div>
+            <h3 class="title">MENU</h3>
+            <span class="close-menu" id="close-menu-top"><i class="fa fa-times" aria-hidden="true"></i></span>
             <ul>
                 <li>
                     <a href="/" title="Trang chủ">Trang chủ</a>
@@ -25,6 +27,8 @@
                     <a href="/lien-he/" title="Liên hệ">Liên hệ</a>
                 </li>
             </ul>
+
+            
         </div>
         <!-- /.menuItem menu-item cssmenu -->
     </nav>
@@ -33,7 +37,7 @@
 <section class="header">
     <div id="wrap_noidung"></div>
     <!-- /#wrap_noidung -->
-    
+
     <div class="header-banner">
         <img src="<%= imageHeader %>" class="img" />
     </div>
@@ -42,7 +46,9 @@
 <!-- /.header -->
 <header id="wapper_menu" class="clearfix">
     <nav class="menu_content ws-container clearfix" style="background-image:url(''); ">
-        <div class="menuItem menu-item cssmenu" id="cssmenu">
+        <div class="menuItem menu-item cssmenu cssmenu-bottom" id="cssmenu-bottom">
+            <h3 class="title">DỊCH VỤ</h3>
+            <span class="close-menu" id="close-menu-bottom"><i class="fa fa-times" aria-hidden="true"></i></span>
             <ul>
                 <% menus.forEach(menu => { %>
                 <li>
@@ -53,11 +59,14 @@
                 <% }); %>
             </ul>
         </div>
+        <div class="load-background"></div>
+
         <!-- /.menuItem menu-item cssmenu -->
         <div class="wapper-menu-mobile clearfix">
             <div class="phone-mobile"><i class="fa fa-phone" aria-hidden="true"></i><span>Hotline : </span><a
                     href="tel::HOTLINE" title="hotline" rel="no-follow">0989.966.617</a></div>
         </div>
+        <div id="mobile-menu-icon">menu<i class="fa fa-bars"></i></div>
         <!-- /#btn-right -->
     </nav>
 </header>

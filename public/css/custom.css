@@ -1,0 +1,119 @@
+#mobile-menu-icon {
+    display: none;
+}
+.cssmenu .title{
+    display: none;
+    text-align: center;
+    color: #000;
+}
+.load-background{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+.show{
+    display: block;
+}
+.close-menu{
+    display: none;
+    background: #fff;
+    position: fixed;
+    top: 0;        
+    transition: all 0.3s ;
+}
+.close-menu i{
+    font-size: 25px;
+    padding: 10px;
+    color: #000;
+}
+
+@media (max-width: 768px){
+    #mobile-menu-icon {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        color: #000;
+        font-size: 15px;
+        text-transform: uppercase;
+        margin-left: auto;
+        padding: 0 10px;
+    }
+    #wapper_top{
+        z-index: 99999;
+    }
+    .cssmenu{
+        position: fixed;
+        background: #fff;
+        width: 270px;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        top: 0;
+        z-index: 9999;
+        transition: all 0.3s ;
+    }
+
+    #cssmenu-bottom{
+        left: -100%;
+    }
+    #cssmenu{
+        right: -100%;
+    }
+    #cssmenu-bottom.active{
+        left: 0;
+    }
+    .cssmenu.active .title{
+        display: block;
+    }
+
+    .cssmenu ul li {
+        border: dotted 1px #eee ;
+        width: 100%;
+        margin: 2px 0;
+    }
+
+    #cssmenu-bottom ul li::before{
+        content: "\f00a";
+    font-family: FontAwesome;
+    font-size: 15px;
+    padding-right: 8px;
+    }
+
+    .cssmenu>ul>li:last-child{
+        padding: 0 10px;
+    }
+   
+
+    #close-menu-top{
+        left: 0;
+    }
+
+    #close-menu-bottom{
+        right: 0;
+    }
+
+
+    #cssmenu.active{
+        right: 0;
+    }
+    #cssmenu ul li{
+        width: 100%;
+    }
+    #cssmenu ul{
+        display: block!important;
+    }
+    #cssmenu ul li a{
+        color: #000;
+        width: 100%;
+    }
+    #cssmenu ul li:last-child a{
+        padding: 0 10px;
+    }
+}
