@@ -1,0 +1,104 @@
+<% layout('../partials/boilerplate') -%>
+
+<section id="main" class="main clearfix">
+    <div class="ws-container">
+        <div class="main-wrap">
+            <div class="content-main">
+                <ol itemscope="" itemtype="http://schema.org/BreadcrumbList" id="breadcrumbs">
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemscope="" itemtype="http://schema.org/Thing" itemprop="item" href="/"
+                            title="<%= info.website %>">
+                            <span itemprop="name"></span>
+                        </a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemscope="" itemtype="http://schema.org/Thing" itemprop="item" href="/san-pham"
+                            title="Sản phẩm">
+                            <span itemprop="name">Sản phẩm</span>
+                        </a>
+                        <meta itemprop="position" content="2">
+                    </li>
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemscope="" itemtype="http://schema.org/Thing" itemprop="item" href="#"
+                            title="<%= product.name %>">
+                            <span itemprop="name"><%= product.name %></span>
+                        </a>
+                        <meta itemprop="position" content="3">
+                    </li>
+                </ol>
+                <h1 class="product-title-big"><%= product.name %></h1>
+                <div class="noidungchitiet">
+                    <div class="noidungchitiet">
+                        <div class="sanpham_group clearfix form-group">
+                            <div class="sanpham_img">
+                                <div class="noidung_img1">
+                                    <img id="img_01" src="<%= product.image %>" alt="<%= product.name %>"
+                                        title="<%= product.name %>">
+                                </div>
+                            </div>
+                            <div class="sanpham_info">
+                                <h1 class="title"><%= product.name %>
+                                </h1>
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <div class="groupprice">
+                                            <div class="gia"><span>Giá :</span>
+                                                <% if(product.price !== "0") {%>
+                                                <span class="gialienhe"><%= product.price %> VNĐ</span>
+                                                <% } else {%>
+                                                </span> <span class="gialienhe">Liên
+                                                    hệ</span>
+                                                <% } %>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.col-sm-7 -->
+                                </div><!-- /.row -->
+                                <div class="form-group btn-order">
+
+                                    <div class="row">
+
+                                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                                            <h3 class="contact">Hãy liên hệ ngay với chúng tôi để đặt hàng</h3>
+                                        </div>
+
+                                    </div><!-- /.row -->
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div role="tabpanel" class="tab-sanpham">
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#chitiet" aria-controls="chitiet" role="tab" data-toggle="tab"
+                                        class="tab-title">Thông tin sản phẩm</a>
+                                </li>
+
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+
+                                <div role="tabpanel" class="tab-pane panel-body active" id="chitiet">
+                                    <div class="luuysanpham">
+                                        <%- product.description %>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.content-main -->
+            <%- partial('../partials/sidebar') %>
+            <!-- /.cotb -->
+        </div>
+        <!-- /.main-wrap -->
+    </div>
+    <!-- /.ws-container -->
+</section>

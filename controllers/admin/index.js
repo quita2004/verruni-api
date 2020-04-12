@@ -3,5 +3,6 @@ module.exports= {
     Home: require('./home'),
     Post: require('./post'),
     Info: require('./info'),
-    Product: require('./product')
+    Product: require('./product'),
+    Menu: require('./menu')
 }

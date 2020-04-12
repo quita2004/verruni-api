@@ -247,7 +247,58 @@
                     </div>
                     <!-- /.cat-product-group -->
                 </div>
-                <!-- /.cat-product-container clearfix -->
+                <div class="cat-product-item product home,tren">
+                    <div class="cat-product-cat-title">
+                        <div class="title-cathome clearfix">
+                            <div class="title-con"><a href="san-pham" title="Sản phẩm"><span
+                                        class="ttten">Sản phẩm</span></a></div>
+                        </div>
+                    </div><!-- /.cat-product-cat-title -->
+                    <div class="cat-product-cat-content clearfix">
+                        <div class="ws-container clearfix">
+
+                            <div class="-row">
+                                <div class="productRun owl-carousel owl-theme">
+                                    <% for (let i = 0; i < product.length; i+=2) {
+                                    const item1 = product[i];
+                                    const item2 = product[i+1];
+                                    const col = [item1];
+                                    if(item2){
+                                        col.push(item2);
+                                    }
+                                %>
+                                    <div>
+                                        <% col.forEach(item => { %>
+                                        <div class="itemsanpham  clearfix ">
+                                            <div class="clearfix itemsanphamBox">
+                                                <div class=""> <a href="<%= item.url %>" title="<%= item.name %>">
+                                                        <img data-original="<%= item.image %>" alt="<%= item.name %>"
+                                                            class="img-responsive lazy" />
+                                                    </a>
+                                                </div>
+                                                <div class="name"> <a href="<%= item.url %>"
+                                                        title="<%= item.name %>"><%= item.name %></a></div>
+                                                <div class="groupprice">
+                                                    <div class="gia"><span>Giá :</span>
+                                                        <% if(item.price !== "0") {%>
+                                                        <span class="gialienhe"><%= item.price %> VNĐ</span>
+                                                        <% } else {%>
+                                                        </span> <span class="gialienhe">Liên
+                                                            hệ</span>
+                                                        <% } %>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% }); %>
+                                    </div>
+                                    <% } %>
+                                </div>
+                            </div><!-- /.row -->
+                        </div><!-- /.ws-container -->
+                    </div><!-- /.cat-product-cat-content -->
+                </div><!-- /.cat-product-item -->
+
             </div>
             <!-- /.content-main -->
             <%- partial('../partials/sidebar') %>

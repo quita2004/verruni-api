@@ -47,6 +47,7 @@ async function startServer() {
     app.use('/dich-vu', controllers.service);
     app.use('/thong-tin-tu-van', controllers.service);
     app.use('/ho-tro-ky-thuat', controllers.service);
+    app.use('/san-pham', controllers.productList);
 
     app.get('/:url', controllers.page);
 

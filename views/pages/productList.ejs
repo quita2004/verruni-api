@@ -1,0 +1,60 @@
+<% layout('../partials/boilerplate') -%>
+
+<section id="main" class="main clearfix">
+    <div class="ws-container">
+        <div class="main-wrap">
+            <div class="content-main">
+                <ol itemscope="" itemtype="http://schema.org/BreadcrumbList" id="breadcrumbs">
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemscope="" itemtype="http://schema.org/Thing" itemprop="item" href="/"
+                            title="<%= info.website %>">
+                            <span itemprop="name"></span>
+                        </a>
+                        <meta itemprop="position" content="1">
+                    </li>
+                    <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+                        <a itemscope="" itemtype="http://schema.org/Thing" itemprop="item" href="#"
+                            title="<%= data.title %>">
+                            <span itemprop="name"><%= data.title %></span>
+                        </a>
+                        <meta itemprop="position" content="2">
+                    </li>
+
+                </ol>
+                <h1 class="product-title-big"><%=  data.title %></h1>
+                <div class="clearfix news-container ws-list">
+                    <div class="content-list row-service">
+                        <% data.items.forEach(item=>{ %>
+                        <div class="itemsanpham  clearfix ">
+                            <div class="clearfix itemsanphamBox">
+                                <div class=""> <a href="<%= item.url %>" title="<%= item.name %>">
+                                        <img data-original="<%= item.image %>" alt="<%= item.name %>"
+                                            class="img-responsive lazy" />
+                                    </a>
+                                </div>
+                                <div class="name"> <a href="<%= item.url %>"
+                                        title="<%= item.name %>"><%= item.name %></a></div>
+                                <div class="groupprice">
+                                    <div class="gia"><span>Giá :</span>
+                                        <% if(item.price !== "0") {%>
+                                        <span class="gialienhe"><%= item.price %> VNĐ</span>
+                                        <% } else {%>
+                                        </span> <span class="gialienhe">Liên
+                                            hệ</span>
+                                        <% } %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div><!-- /.content-list -->
+                </div>
+            </div>
+            <!-- /.content-main -->
+            <%- partial('../partials/sidebar') %>
+            <!-- /.cotb -->
+        </div>
+        <!-- /.main-wrap -->
+    </div>
+    <!-- /.ws-container -->
+</section>

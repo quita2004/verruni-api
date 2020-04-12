@@ -7,6 +7,8 @@ module.exports = function (passport) {
   router.get('/slider', middleware.isAuthenticated, adminController.Slider.get);
   router.get('/post', middleware.isAuthenticated, adminController.Post.get);
   router.get('/product', middleware.isAuthenticated, adminController.Product.get);
+  router.get('/menu', middleware.isAuthenticated, adminController.Menu.get);
+
   router.get('/info', middleware.isAuthenticated, adminController.Info.get);
   router.get('/', middleware.isAuthenticated, adminController.Info.get);
 

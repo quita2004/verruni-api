@@ -34,6 +34,36 @@
     color: #000;
 }
 
+.itemsanphamBox .img-responsive{
+    opacity: 1!important;
+}
+.itemsanpham .gia{
+    width: 100%;
+}
+
+.sanpham_img {
+    position: relative;
+    width: 42%;
+    float: left;
+}
+.sanpham_info {
+    width: 55%;
+    float: right;
+}
+.sanpham_info h1.title {
+    font-size: 20px;
+    line-height: 1.5;
+    color: #ff0000;
+}
+.sanpham_info .gialienhe{
+    color: red;
+    font-size: 18px;
+    font-weight: 700;
+}
+.sanpham_info .contact{
+    font-size: 18px;
+    color: blue;
+}
 @media (max-width: 768px){
     #mobile-menu-icon {
         display: flex;

@@ -21,6 +21,9 @@
                     <a href="/ho-tro-ky-thuat/" title="Hỗ trợ kỹ thuật">Hỗ trợ kỹ thuật</a>
                 </li>
                 <li>
+                    <a href="/san-pham/" title="Hỗ trợ kỹ thuật">Sản phẩm</a>
+                </li>
+                <li>
                     <a href="/tuyen-dung/" title="Tuyển Dụng">Tuyển Dụng</a>
                 </li>
                 <li>
@@ -52,8 +55,8 @@
             <ul>
                 <% menus.forEach(menu => { %>
                 <li>
-                    <a href="<%= menu.url %>" title="<%= menu.text %>">
-                        <%= menu.text %>
+                    <a href="<%= menu.url %>" title="<%= menu.title %>">
+                        <%= menu.title %>
                     </a>
                 </li>
                 <% }); %>

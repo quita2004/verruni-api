@@ -16,7 +16,7 @@ function getFileUrl(name) {
 }
 
 async function getCommonData() {
-    const menus = await models.Menu.get(enums.Menu.Home);
+    const menus = await models.Menu.get({category: enums.Menu.Home});
     const data = await models.Information.get();
     const info = data[0];
     const guide = await models.Post.get({ category: enums.Post.advisory });

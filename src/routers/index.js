@@ -37,4 +37,12 @@ productRouter.post('/delete/:id', controllers.Product.delete);
 
 router.use('/product', productRouter);
 
+let menuRouter = Router();
+menuRouter.get('/:id', controllers.Menu.get);
+menuRouter.post('/', controllers.Menu.create);
+menuRouter.post('/update', controllers.Menu.update);
+menuRouter.post('/delete/:id', controllers.Menu.delete);
+
+router.use('/menu', menuRouter);
+
 module.exports = router;

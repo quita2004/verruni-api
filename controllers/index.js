@@ -5,7 +5,7 @@ const common = require('../common');
 module.exports = {
     index: async (req, res) => {
         const commonData = await common.getCommonData();
-        const sliders = await models.Slider.get({category: enums.Slider.Home});
+        const sliders = await models.Slider.get({ category: enums.Slider.Home });
 
         const post = await models.Post.get({});
 
@@ -31,12 +31,18 @@ module.exports = {
             }
         });
 
+        const product = await models.Product.get({});
+        product.map(item => {
+            item.image = common.getFileUrl(item.image);
+        })
+
         res.render('pages/index', {
             ...commonData,
             sliders,
             services,
             advisory,
-            support
+            support,
+            product
         });
     },
     page: async (req, res) => {
@@ -44,9 +50,21 @@ module.exports = {
 
         const { url } = req.params;
 
-        const post = await models.Post.get({ url: '/' + url });
+        const fullUrl = '/' + url;
+        const post = await models.Post.get({ url: fullUrl });
         if (post.length === 0) {
-            res.sendStatus(404);
+            const product = await models.Product.get({ url: fullUrl });
+
+            if (product.length === 0) {
+                res.sendStatus(404);
+                return;
+            }
+            product[0].image = common.getFileUrl(product[0].image);
+
+            res.render('pages/productDetail', {
+                ...commonData,
+                product: product[0]
+            });
             return;
         }
 
@@ -76,6 +94,22 @@ module.exports = {
         res.render('pages/category', {
             ...commonData,
             cate
+        });
+    },
+    productList: async (req, res) => {
+        const commonData = await common.getCommonData();
+
+        const items = await models.Product.get({});
+        items.map(item => {
+            item.image = common.getFileUrl(item.image);
+        });
+        const data = {
+            items,
+            title: 'Sản phẩm',
+        }
+        res.render('pages/productList', {
+            ...commonData,
+            data
         });
     }
 }

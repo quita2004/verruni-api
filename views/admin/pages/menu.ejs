@@ -14,25 +14,25 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th style="width: 500px;">Tên</th>
-                                <th>Ảnh</th>
+                                <th>Tiêu đề</th>
                                 <th class="toolkit">#</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <% product.forEach(item => { %>
+                            <% menus.forEach(item => { %>
                             <tr>
-                                <td><%= item.name %></td>
-                                <td><img class="q-show-img" src="<%= item.image %>" alt="<%= item.name %>"></td>
+                                <td><%= item.title %></td>
                                 <td class="toolkit">
-                                    <button class="btn q-button-edit" title="Sửa" data-url="/api/product"
+                                    <button class="btn q-button-edit" title="Sửa" data-url="/api/menu"
                                         data-id="<%= item.id %>" data-toggle="modal" data-target="#createModal"><i
                                             class="fas fa-edit"></i></button>
-                                    <button class="btn btn-delete q-button-delete" title="Xóa" data-id="<%= item.id %>"
-                                        data-url="/api/product"><i class="fas fa-trash text-danger"></i></button>
+                                    <button class="btn btn-delete q-button-delete" title="Xóa"
+                                        data-id="<%= item.id %>" data-url="/api/menu"><i
+                                            class="fas fa-trash text-danger"></i></button>
                                 </td>
                             </tr>
                             <% }); %>
+
                         </tbody>
                     </table>
                 </div>
@@ -47,7 +47,7 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Thêm mới</h4>
+                    <h4 class="modal-title"><%= title %></h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -58,28 +58,12 @@
                         <div class="container">
                             <div class="row">
                                 <div class="form-group col-sm-6">
-                                    <label for="name">Tên:</label>
-                                    <input type="text" class="form-control" id="title" data-name="name"
-                                        data-type="text" />
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="price">Giá:</label>
-                                    <input type="text" class="form-control" id="price" data-name="price"
-                                        data-type="text" />
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="image">Hình ảnh:</label>
-                                    <div class="show-image">
-                                        <input type="image" src="<%= common.getFileUrl() %>" alt="preview" class="img"
-                                            data-image-show="image" />
-                                    </div>
-                                    <input type="file" hidden accept="image/x-png,image/gif,image/jpeg" id="image"
-                                        data-image="image" data-name="image" data-type="file" />
-                                </div>
-                                <div class="form-group col-sm-12">
-                                    <label for="description">Mô tả:</label>
-                                    <input type="text" class="form-control summernote" placeholder="Tiêu đề"
-                                        id="description" data-name="description" data-type="summernote" />
+                                    <label for="category">Bài viết:</label>
+                                    <select class="form-control" id="post_id" data-name="post_id" data-type="text">
+                                        <% posts.forEach(item => { %>
+                                        <option value="<%= item.id %>"><%= item.title %></option>
+                                        <%}) %>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -89,9 +73,9 @@
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" data-dismiss="modal" class="btn btn-success btn-create-entity"
-                        data-form=".form-modal-create" data-url="/api/product">Tạo</button>
+                        data-form=".form-modal-create" data-url="/api/menu">Tạo</button>
                     <button type="button" data-dismiss="modal" class="btn btn-success btn-update-entity"
-                        data-form=".form-modal-create" data-url="/api/product">Cập nhật</button>
+                        data-form=".form-modal-create" data-url="/api/menu">Cập nhật</button>
 
                     <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
                 </div>
