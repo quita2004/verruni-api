@@ -59,9 +59,10 @@
                                         <% services.forEach(item => { %>
                                         <div class="itemservice clearfix">
                                             <div class="noidungbox clearfix">
-                                                <div itemprop="image" class="image">
-                                                    <a title="<%= item.title %>" href="<%= item.url %>"><img
-                                                            src="<%= item.image %>" alt="<%= item.title %>"></a>
+                                                <div itemprop="image" class="image ImagesFrame">
+                                                    <a title="<%= item.title %>" href="<%= item.url %>" class="ImagesFrameCrop0">
+                                                        <img src="<%= item.image %>" alt="<%= item.title %>">
+                                                    </a>
                                                 </div>
                                                 <section id="main-contentt">
                                                     <h2 itemprop="headline" class="name"><a title="<%= item.title %>"
@@ -250,8 +251,8 @@
                 <div class="cat-product-item product home,tren">
                     <div class="cat-product-cat-title">
                         <div class="title-cathome clearfix">
-                            <div class="title-con"><a href="san-pham" title="Sản phẩm"><span
-                                        class="ttten">Sản phẩm</span></a></div>
+                            <div class="title-con"><a href="san-pham" title="Sản phẩm"><span class="ttten">Sản
+                                        phẩm</span></a></div>
                         </div>
                     </div><!-- /.cat-product-cat-title -->
                     <div class="cat-product-cat-content clearfix">
